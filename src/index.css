@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+@theme {
+    --color-body: #F7F7F7;
+    --color-home: #962AE8
+}
