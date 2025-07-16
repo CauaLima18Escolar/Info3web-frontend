@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-    --color-body: #F7F7F7;
-    --color-home: #962AE8
+  --color-body: #f7f7f7;
+  --color-roxo_destaque: #962ae8;
 }
