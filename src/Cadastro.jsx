@@ -1,10 +1,48 @@
 import "./index.css";
 import feijao from "./assets/feijao.svg";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+
 
 export default function Cadastro() {
+
+const [nome, setNome] = useState("");
+const [matricula, setMatricula] = useState("");
+const [email, setEmail] = useState("");
+const [senha, setSenha] = useState("");
+
+const enviarCadastro = async () => {
+  try {
+    const resposta = await fetch("http://127.0.0.1:5000/cadastro", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nome,
+        matricula,
+        email,
+        senha,
+      }),
+    });
+
+    const dados = await resposta.json();
+    alert(dados.mensagem);
+  } catch (err) {
+    console.error(err);
+    alert("Erro ao enviar cadastro");
+  }
+};
+
+const navigate = useNavigate()
+  const irParaLogin = () => {
+    navigate('/')
+  }
+
   return (
     <body className="h-screen flex items-center justify-center bg-body">
-      <div className="relative z-10 bg-white bg-opacity-80 py-8 px-4 rounded-lg text-center shadow-xl">
+      <div className="relative z-10 bg-white bg-opacity-80 py-8 px-4 rounded-lg text-center shadow-xl h-max-64">
         <div className="flex flex-col gap-y-[16px] px-10">
           <h1 className="text-roxo_destaque text-left text-[28px] font-bold border-b-3">
             Faça seu cadastro
@@ -13,37 +51,45 @@ export default function Cadastro() {
             <h1 className="text-left font-medium">Nome:</h1>
             <input
               placeholder="Insira seu nome"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
               className="w-[280px] px-2 py-1 rounded-lg border-1"
-            ></input>
+            />
           </div>
           <div className="flex flex-col gap-y-[8px]">
             <h1 className="text-left font-medium">Matricula:</h1>
             <input
-              placeholder="Insira sua matrícula"
+              placeholder="Insira sua matricula"
+              value={matricula}
+              onChange={(e) => setMatricula(e.target.value)}
               className="w-[280px] px-2 py-1 rounded-lg border-1"
-            ></input>
+            />
           </div>
           <div className="flex flex-col gap-y-[8px]">
             <h1 className="text-left font-medium">E-mail:</h1>
             <input
-              placeholder="Insira seu e-mail"
+              placeholder="Insira seu E-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-[280px] px-2 py-1 rounded-lg border-1"
-            ></input>
+            />
           </div>
           <div className="flex flex-col gap-y-[8px]">
             <h1 className="text-left font-medium">Senha:</h1>
             <input
               placeholder="Insira sua senha"
-              className="px-2 py-1 rounded-lg border-1"
-            ></input>
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              className="w-[280px] px-2 py-1 rounded-lg border-1"
+            />
           </div>
           <div className="flex flex-col gap-y-[16px]">
-            <button className="bg-roxo_destaque rounded-lg text-white py-2">
+            <button className="bg-roxo_destaque rounded-lg text-white py-2" onClick={ enviarCadastro } >
               Enviar
             </button>
             <h1 className="flex items-center justify-center">
               Já tem conta?
-              <button className="px-1 cursor-pointer text-roxo_destaque border-b">
+              <button className="px-1 cursor-pointer text-roxo_destaque border-b" onClick={ irParaLogin }>
                 Faça login
               </button>
             </h1>
