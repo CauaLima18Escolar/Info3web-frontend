@@ -21,12 +21,12 @@ export default function Sidebar() {
 
   return (
     <aside className="fixed top-1/2 left-0 transform -translate-y-1/2 w-48 h-[720px] bg-white rounded-r-[40px] shadow-md flex flex-col items-center justify-center">
-      <div className="flex items-center gap-3 mb-12 pr-7">
+      <div className="flex items-center gap-3 mb-36 pr-7">
         <img src={logo} alt="Logo" className="w-8 h-8" />
         <h1 className="text-xl font-normal">INFO3V</h1>
       </div>
 
-      <nav className="flex flex-col gap-20 w-full px-4">
+      <nav className="flex flex-col gap-24 w-full px-4">
         {navItems.map(({ label, icon, to }) => {
           const isActive = location.pathname === to;
 
