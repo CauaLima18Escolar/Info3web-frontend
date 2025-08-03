@@ -1,8 +1,8 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Cadastro from './Cadastro.jsx'
-import Login from './Login.jsx'
+import Cadastro from './pages/Cadastro.jsx'
+import Login from './pages/Login.jsx'
 import SidebarTest from './sidebarTest.jsx'
 
 

@@ -1,7 +1,6 @@
-import React from 'react'
-import { imgUsuario } from "../assets/vini.svg"
-import { imgPost1 } from "../assets/Comunistas.svg"
-import { imgPost2 } from "../assets/Comunistas2.svg"
+import imgUsuario from "../assets/vini.svg"
+import imgPost1 from "../assets/Comunistas.svg"
+import imgPost2 from "../assets/Comunistas2.svg"
 
 export default function Post() {
 

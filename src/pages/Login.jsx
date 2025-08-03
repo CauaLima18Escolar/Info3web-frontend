@@ -1,5 +1,5 @@
-import "./index.css";
-import feijao from "./assets/feijao.svg";
+import "../index.css";
+import feijao from "../assets/feijao.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -11,7 +11,6 @@ export default function Login() {
   const irParaCadastro = () => {
     navigate("/cadastro");
   };
-
   return (
     <div className="h-screen flex items-center justify-center bg-body">
       <div className="relative z-10 bg-white bg-opacity-80 py-8 px-4 rounded-lg text-center shadow-xl h-max-64">
