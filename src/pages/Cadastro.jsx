@@ -1,12 +1,13 @@
-import "./index.css";
-import feijao from "./assets/feijao.svg";
+import "../index.css";
+import feijao from "../assets/feijao.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import ApiService from "../service/ApiService";
 
 
 
 export default function Cadastro() {
-
+const { post } = ApiService;
 const [nome, setNome] = useState("");
 const [matricula, setMatricula] = useState("");
 const [email, setEmail] = useState("");
@@ -14,24 +15,10 @@ const [senha, setSenha] = useState("");
 
 const enviarCadastro = async () => {
   try {
-    const resposta = await fetch("http://127.0.0.1:5000/cadastro", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        nome,
-        matricula,
-        email,
-        senha,
-      }),
-    });
-
-    const dados = await resposta.json();
-    alert(dados.mensagem);
+    const resposta = await post("/auth/registro", { nome, matricula, email, senha });
+    alert(resposta.data.detail);
   } catch (err) {
-    console.error(err);
-    alert("Erro ao enviar cadastro");
+    alert("Erro ao enviar cadastro: " + err.response.data?.detail ?? "Erro desconhecido");
   }
 };
 
