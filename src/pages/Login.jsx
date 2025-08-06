@@ -2,8 +2,10 @@ import "../index.css";
 import feijao from "../assets/feijao.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../contexts/Auth";
 
 export default function Login() {
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [matricula, setMatricula] = useState("");
   const [senha, setSenha] = useState("");
@@ -11,10 +13,23 @@ export default function Login() {
   const irParaCadastro = () => {
     navigate("/cadastro");
   };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await login({ matricula, senha });
+    } catch (error) {
+      console.error("Erro ao fazer login:", error);
+    }
+  };
+
   return (
     <div className="h-screen flex items-center justify-center bg-body">
       <div className="relative z-10 bg-white bg-opacity-80 py-8 px-4 rounded-lg text-center shadow-xl h-max-64">
-        <div className="flex flex-col gap-y-[66px] px-10">
+        <form
+          onSubmit={handleLogin}
+          className="flex flex-col gap-y-[66px] px-10"
+        >
           <h1 className="text-roxo_destaque text-left text-[28px] font-bold border-b-3">
             Faça seu Login
           </h1>
@@ -37,19 +52,23 @@ export default function Login() {
               onChange={(e) => setSenha(e.target.value)}
             />
           </div>
-          <button className="bg-roxo_destaque rounded-lg text-white py-2">
+          <button
+            type="submit"
+            className="bg-roxo_destaque rounded-lg cursor-pointer text-white py-2"
+          >
             Enviar
           </button>
           <div className="flex gap-y-[16px] itens-center justify-center">
             <h1 className="flex items-center justify-center">Não tem conta?</h1>
             <button
+              type="button"
               className="px-1 cursor-pointer text-roxo_destaque border-b"
               onClick={irParaCadastro}
             >
               Faça seu cadastro
             </button>
           </div>
-        </div>
+        </form>
       </div>
       <img
         src={feijao}
