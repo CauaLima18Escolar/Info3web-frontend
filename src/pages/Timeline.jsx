@@ -6,7 +6,7 @@ export default function TimeLine() {
   return (
     <div className="flex flex-col min-h-screen items-center justify-center bg-body py-10">
       <AddPost/>
-      <Posts />
+      <Posts />    
     </div>
   );
 }
