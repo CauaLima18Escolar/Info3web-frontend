@@ -18,7 +18,7 @@ const enviarCadastro = async () => {
     const resposta = await post("/auth/registro", { nome, matricula, email, senha });
     alert(resposta.data.detail);
   } catch (err) {
-    alert("Erro ao enviar cadastro: " + err.response.data?.detail ?? "Erro desconhecido");
+    alert("Erro ao enviar cadastro: " + err.response.data?.detail || "Erro desconhecido");
   }
 };
 
