@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom'
-import Teste from '../pages/Teste'
 import TimeLine from '../pages/Timeline'
 import Turma from '../pages/Turma'
 
