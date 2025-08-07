@@ -1,8 +1,7 @@
-import React from "react";
-import Post from "./Post";
 import imgPost1 from "../assets/Comunistas.svg";
 import imgPost2 from "../assets/Comunistas2.svg";
 import vinicius from "../assets/vini.svg"
+import Post from "./Post";
 
 const posts = [
   {
@@ -31,7 +30,7 @@ export default function Posts() {
     <div>
       <ul className="flex flex-col gap-y-10">
         {posts.map((post) => (
-          <Post post={post} />
+          <Post postData={post} />
         ))}
       </ul>
     </div>

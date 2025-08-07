@@ -1,18 +1,47 @@
-export default function Post({ post }) {
+export default function Post({ postData }) {
+  const iniciais = postData.nomeUser?.slice(0, 2).toUpperCase();
+
   return (
-    <div className="bg-white flex flex-col">
-      <li className="flex flex-col bg-white rounded-[10px] w-2xl h-96 p-5 gap-y-7">
-        <div className="flex gap-2 items-center">
-          <img src={post.imagemUser} alt="" />
-          <p className="text-roxo_destaque">{post.nomeUser}</p>
+    <div className="flex flex-col bg-white p-5 rounded-[10px] mb-5 shadow-md">
+      <div className="flex gap-3 items-center mb-3">
+        <div className="flex items-center justify-center w-10 h-10 bg-purple-600 rounded-full text-white font-bold">
+          {iniciais}
         </div>
-        <p className="text-wrap">{post.conteudo}</p>
-        <div className="flex w-full justify-between">
-          {(post.imagensPost).map((imagem) => (
-            <img src = {imagem} ></img>
-          ))}
+        <p className="text-purple-600 text-[18px] font-bold">
+          {postData.nomeUser || "Usuário"}
+        </p>
+      </div>
+      
+      <div className="pl-[52px]">
+        <p className="text-gray-800 text-[16px] whitespace-pre-line mb-3">
+          {postData.conteudo}
+        </p>
+      </div>
+
+      {postData.imagensPost && postData.imagensPost.length > 0 && (
+        <div className="pl-[52px] mb-3">
+          <div className="grid grid-cols-2 gap-2">
+            {postData.imagensPost.map((imagem, index) => (
+              <div key={index} className="rounded-lg overflow-hidden">
+                <img 
+                  src={imagem}
+                  alt={`Post de ${postData.nomeUser}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </li>
+      )}
+      
+      <div className="flex justify-end gap-4 mt-3 pt-3 border-t border-gray-100">
+        <button className="cursor-pointer text-gray-500 hover:text-purple-600">
+          Curtir
+        </button>
+        <button className="cursor-pointer text-gray-500 hover:text-purple-600">
+          Comentar
+        </button>
+      </div>
     </div>
   );
 }

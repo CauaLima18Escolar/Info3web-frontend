@@ -1,20 +1,41 @@
-import React from "react";
 import { useAuth } from "../contexts/Auth";
 import { Icons } from "../assets/icons";
 
 export default function AddPost() {
   const dataDoUsuario = useAuth();
-  console.log(dataDoUsuario.usuario.usuario.nome)
+
+  // Extrai as duas primeiras letras do nome em maiúsculas
+  const iniciais = dataDoUsuario?.usuario?.usuario?.nome
+    ?.slice(0, 2)
+    .toUpperCase();
 
   return (
-    <div className="flex flex-col bg-white p-5 w-2xl rounded-[10px] mb-10">
-      <div className="flex font-bold text-2xl items-center justify-center mb-4">No que você está pensando?</div>
-      <div className="flex gap-2 items-center mb-2">
-        <p>img</p>
-        <p className="text-roxo_destaque text-[20px]">{dataDoUsuario.usuario.usuario.nome}</p>
+    <div className="flex flex-col w-full bg-white p-5 rounded-[10px] mb-10 shadow-md">
+      <div className="flex font-bold text-2xl items-center justify-center mb-4 text-gray-800">
+        No que você está pensando?
       </div>
-      <input type="text" className="outline-0 mb-4" placeholder="Fale mal do seu professor...." />
-      <button className="flex justify-end mb-1"><Icons.Add/></button>
+
+      <div className="flex gap-3 items-center mb-4">
+        <div className="flex items-center justify-center w-10 h-10 bg-purple-600 rounded-full text-white font-bold">
+          {iniciais}
+        </div>
+
+        <p className="text-purple-600 text-[20px] font-medium">
+          {dataDoUsuario?.usuario?.usuario?.nome || "Usuário"}
+        </p>
+      </div>
+
+      <textarea
+        id="post"
+        className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent mb-4 resize-none h-32"
+        placeholder="Fale mal do seu professor..."
+      />
+
+      <div className="flex justify-end">
+        <button className="duration-400 p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer">
+          <Icons.Add className="text-purple-600 w-6 h-6" />
+        </button>
+      </div>
     </div>
   );
 }
