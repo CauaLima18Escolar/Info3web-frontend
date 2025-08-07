@@ -28,7 +28,7 @@ const navigate = useNavigate()
   }
 
   return (
-    <div className="h-screen flex items-center justify-center bg-body">
+    <div className="h-screen flex items-center justify-center">
       <div className="relative z-10 bg-white bg-opacity-80 py-8 px-4 rounded-lg text-center shadow-xl h-max-64">
         <div className="flex flex-col gap-y-[16px] px-10">
           <h1 className="text-roxo_destaque text-left text-[28px] font-bold border-b-3">
