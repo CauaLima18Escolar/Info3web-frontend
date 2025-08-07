@@ -2,10 +2,7 @@ import React from "react";
 import Post from "./Post";
 import imgPost1 from "../assets/Comunistas.svg";
 import imgPost2 from "../assets/Comunistas2.svg";
-import imgPost12 from "../assets/aparecida.png";
-import imgPost22 from "../assets/aparecida2.png"
 import vinicius from "../assets/vini.svg"
-import carlos from "../assets/carlos.svg"
 
 const posts = [
   {
@@ -21,8 +18,8 @@ const posts = [
     nomeUser: "Carlos.",
     conteudo:
       "Ei namoral aquela professora lá, chatona irmão Nau águento mais a aula dela, bglh ta ficando sobrenatural ja de tanta aula sobrenaturalmente ruim que ela da ",
-    imagensPost: [imgPost12, imgPost22],
-    imagemUser: carlos
+    imagensPost: [imgPost1, imgPost2],
+    imagemUser: vinicius
   },
 ];
 
