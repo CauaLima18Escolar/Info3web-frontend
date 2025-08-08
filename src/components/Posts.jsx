@@ -3,12 +3,17 @@ import ApiService from "../service/ApiService";
 import { useEffect, useState } from "react";
 
 
-export default function Posts() {
+export default function Posts({ id = "" }) {
   const [posts, setPosts] = useState([]);
   const { get } = ApiService;
 
   const handlePeriodicPosts = async () => {
-    const { data } = await get("/post/listar");
+    const fetch = id 
+    ? get(`/post/listar_por_autor_id/${id}`) 
+    : get("/post/listar")
+
+    const { data } = await fetch
+
     setPosts(data.reverse());
   };
 
