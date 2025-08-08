@@ -1,7 +1,9 @@
-import coracao from "../assets/coracao.svg"
+import { useState } from "react";
+import { Icons } from "../assets/icons";
 
 export default function Post({ postData }) {
   const iniciais = postData.autor_nome?.slice(0, 2).toUpperCase();
+  const [heartClicked, setHeartClicked] = useState(false)
 
   return (
     <div className="flex flex-col bg-white p-5 rounded-[10px] mb-5 shadow-md w-2xl">
@@ -37,11 +39,11 @@ export default function Post({ postData }) {
       )}
       
       <div className="flex justify-end gap-4 mt-3 pt-3 border-t border-gray-100">
-        <button className="cursor-pointer text-gray-500 hover:text-purple-600">
-          <img src={ coracao } className="to-purple-600" ></img>
+        <button onClick={() => setHeartClicked(!heartClicked)} className="cursor-pointer text-gray-500 hover:text-purple-600">
+          {heartClicked ? <Icons.HeartFilled/> : <Icons.Heart/>}
         </button>
         <button className="cursor-pointer text-gray-500 hover:text-purple-600">
-          Comentar
+          <Icons.Comment/>
         </button>
       </div>
     </div>
