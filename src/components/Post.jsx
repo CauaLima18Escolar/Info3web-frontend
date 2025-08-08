@@ -2,7 +2,7 @@ export default function Post({ postData }) {
   const iniciais = postData.nomeUser?.slice(0, 2).toUpperCase();
 
   return (
-    <div className="flex flex-col bg-white p-5 rounded-[10px] mb-5 shadow-md">
+    <div className="flex flex-col bg-white p-5 rounded-[10px] mb-5 shadow-md w-2xl">
       <div className="flex gap-3 items-center mb-3">
         <div className="flex items-center justify-center w-10 h-10 bg-purple-600 rounded-full text-white font-bold">
           {iniciais}
@@ -13,7 +13,7 @@ export default function Post({ postData }) {
       </div>
       
       <div className="pl-[52px]">
-        <p className="text-gray-800 text-[16px] whitespace-pre-line mb-3">
+        <p className="text-gray-800 text-[16px] text-wrap whitespace-pre-line mb-3">
           {postData.conteudo}
         </p>
       </div>
@@ -26,7 +26,7 @@ export default function Post({ postData }) {
                 <img 
                   src={imagem}
                   alt={`Post de ${postData.nomeUser}`}
-                  className="w-full h-full object-cover"
+                  className="h-36 object-cover"
                 />
               </div>
             ))}

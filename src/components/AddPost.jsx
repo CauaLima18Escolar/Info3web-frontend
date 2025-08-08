@@ -1,6 +1,6 @@
 import { useAuth } from "../contexts/Auth";
 import { Icons } from "../assets/icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ApiService from "../service/ApiService";
 
 export default function AddPost() {
@@ -28,7 +28,7 @@ export default function AddPost() {
     .toUpperCase();
 
   return (
-    <div className="flex flex-col w-full bg-white p-5 rounded-[10px] mb-10 shadow-md">
+    <div className="flex flex-col w-2xl bg-white p-5 rounded-[10px] mb-10 shadow-md">
       <div className="flex font-bold text-2xl items-center justify-center mb-4 text-gray-800">
         No que você está pensando?
       </div>
