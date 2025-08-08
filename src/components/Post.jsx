@@ -22,7 +22,7 @@ export default function Post({ postData }) {
 
       {postData.imagens && postData.imagens.length > 0 && (
         <div className="pl-[52px] mb-3">
-          <div className={`"grid grid-cols-2 gap-2"`}>
+          <div className={`grid ${postData.imagens.length === 2 ? "grid-cols-2" : "grid-cols-1"} gap-2`}>
             {postData.imagens.map((imagem, index) => (
               <div key={index} className="rounded-lg overflow-hidden">
                 <img 
