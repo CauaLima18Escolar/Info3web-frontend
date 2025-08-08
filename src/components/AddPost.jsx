@@ -2,6 +2,7 @@ import { useAuth } from "../contexts/Auth";
 import { Icons } from "../assets/icons";
 import { useState } from "react";
 import ApiService from "../service/ApiService";
+import MessageService from "../service/MessageService";
 
 export default function AddPost() {
   const [conteudo, setConteudo] = useState("");
@@ -12,7 +13,7 @@ export default function AddPost() {
     e.preventDefault();
 
     if (!conteudo.trim()) {
-      alert("Por favor, escreva algo antes de enviar.");
+      MessageService.warning("Campos obrigatórios", "Por favor, escreva algo no seu post antes de enviar.")
       return;
     }
 
@@ -20,7 +21,11 @@ export default function AddPost() {
     formData.append("conteudo", conteudo);
     formData.append("autor_id", dataDoUsuario?.usuario?.usuario?.id);
 
-    await postFile("/posts/criar", formData)
+    const { status } = await postFile("/post/criar", formData)
+    if (status === 200) {
+      MessageService.success("Post publicado")
+      setConteudo("")
+    }
   }
   // Extrai as duas primeiras letras do nome em maiúsculas
   const iniciais = dataDoUsuario?.usuario?.usuario?.nome

@@ -1,4 +1,5 @@
 import axios from "axios";
+import MessageService from "./MessageService";
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000",
@@ -11,13 +12,18 @@ const instance = axios.create({
 
 const getToken = () => {
   const userData = localStorage.getItem("@info3web/userPayload/token");
-  
+
   if (userData) {
     const parsedData = JSON.parse(userData);
     return parsedData.token;
   }
   return null;
 };
+
+const clearToken = () => {
+  localStorage.removeItem("@info3web/userPayload/token")
+  window.location.href = "/"
+}
 
 instance.interceptors.request.use(
   (config) => {
@@ -37,39 +43,46 @@ instance.interceptors.response.use(
     return Promise.resolve(res);
   },
   (error) => {
-    if (error.response?.status === 500) {
+    const status = error.response?.status;
+    const detail = error.response?.data?.detail;
+
+    if (status === 500) {
+      MessageService.error("⚠ Erro interno do servidor", detail);
       console.error(
         "Ocorreu um erro no servidor. Por favor, tente novamente mais tarde."
       );
-      return Promise.reject(error);
-    } else if (error.response?.status === 404) {
+    } 
+    else if (status === 404) {
+      MessageService.error("Recurso não encontrado", detail);
       console.error(
         "Recurso não encontrado. Verifique a URL e tente novamente."
       );
-      return Promise.reject(error);
-    } else if (error.response?.status === 400) {
+    } 
+    else if (status === 400) {
+      MessageService.error("Dados inválidos", detail);
       console.error("Requisição inválida. Verifique os dados enviados.");
-      return Promise.reject(error);
-    } else if (error.response?.status === 401) {
+    } 
+    else if (status === 401) {
+      MessageService.error("Sessão expirada", detail);
+      clearToken();
       console.error("Não autorizado. Verifique suas credenciais.");
-      return Promise.reject(error);
-    } else if (error.response?.status === 403) {
+    } 
+    else if (status === 403) {
+      MessageService.error("Acesso não permitido", detail);
       console.error(
         "Acesso proibido. Você não tem permissão para acessar este recurso."
       );
-      return Promise.reject(error);
-    } else {
+    } 
+    else {
+      MessageService.error("Falha de conexão com o servidor", detail);
       console.error("Ocorreu um erro desconhecido: ", error.message);
-      return Promise.reject(error);
     }
+
+    return Promise.reject(error);
   }
 );
 
 class ApiService {
-  setToken(token) {
-    console.log("Token atualizado:", token);
-  }
-
   get(url) {
     return instance.get(url);
   }
@@ -80,7 +93,7 @@ class ApiService {
   postFile(url, data) {
     return instance.post(url, data, {
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
         "Content-Type": "multipart/form-data",
       },
     });
