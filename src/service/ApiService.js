@@ -3,7 +3,34 @@ import axios from "axios";
 const instance = axios.create({
   baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000",
   timeout: 10000,
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
 });
+
+const getToken = () => {
+  const userData = localStorage.getItem("@info3web/userPayload/token");
+  
+  if (userData) {
+    const parsedData = JSON.parse(userData);
+    return parsedData.token;
+  }
+  return null;
+};
+
+instance.interceptors.request.use(
+  (config) => {
+    const token = getToken();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 instance.interceptors.response.use(
   (res) => {
@@ -27,7 +54,9 @@ instance.interceptors.response.use(
       console.error("Não autorizado. Verifique suas credenciais.");
       return Promise.reject(error);
     } else if (error.response?.status === 403) {
-      console.error("Acesso proibido. Você não tem permissão para acessar este recurso.");
+      console.error(
+        "Acesso proibido. Você não tem permissão para acessar este recurso."
+      );
       return Promise.reject(error);
     } else {
       console.error("Ocorreu um erro desconhecido: ", error.message);
@@ -37,6 +66,10 @@ instance.interceptors.response.use(
 );
 
 class ApiService {
+  setToken(token) {
+    console.log("Token atualizado:", token);
+  }
+
   get(url) {
     return instance.get(url);
   }
@@ -47,6 +80,7 @@ class ApiService {
   postFile(url, data) {
     return instance.post(url, data, {
       headers: {
+        "Accept": "application/json",
         "Content-Type": "multipart/form-data",
       },
     });
