@@ -34,7 +34,7 @@ export default function Perfil() {
         </h1>
 
         <div className=" bg-body flex justify-center items-center">
-          <Posts />
+          <Posts id={usuario.usuario.id}/>
         </div>
       </div>
     </div>
