@@ -1,7 +1,7 @@
 import coracao from "../assets/coracao.svg"
 
 export default function Post({ postData }) {
-  const iniciais = postData.nomeUser?.slice(0, 2).toUpperCase();
+  const iniciais = postData.autor_nome?.slice(0, 2).toUpperCase();
 
   return (
     <div className="flex flex-col bg-white p-5 rounded-[10px] mb-5 shadow-md w-2xl">
@@ -10,7 +10,7 @@ export default function Post({ postData }) {
           {iniciais}
         </div>
         <p className="text-purple-600 text-[18px] font-bold">
-          {postData.nomeUser || "Usuário"}
+          {postData.autor_nome || "Usuário"}
         </p>
       </div>
       
@@ -20,15 +20,15 @@ export default function Post({ postData }) {
         </p>
       </div>
 
-      {postData.imagensPost && postData.imagensPost.length > 0 && (
+      {postData.imagens && postData.imagens.length > 0 && (
         <div className="pl-[52px] mb-3">
-          <div className="grid grid-cols-2 gap-2">
-            {postData.imagensPost.map((imagem, index) => (
+          <div className={`"grid grid-cols-2 gap-2"`}>
+            {postData.imagens.map((imagem, index) => (
               <div key={index} className="rounded-lg overflow-hidden">
                 <img 
                   src={imagem}
-                  alt={`Post de ${postData.nomeUser}`}
-                  className="h-36 object-cover"
+                  alt={`Post de ${postData.autor_nome}`}
+                  className="w-full h-100 object-cover"
                 />
               </div>
             ))}
