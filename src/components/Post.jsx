@@ -1,3 +1,5 @@
+import coracao from "../assets/coracao.svg"
+
 export default function Post({ postData }) {
   const iniciais = postData.nomeUser?.slice(0, 2).toUpperCase();
 
@@ -36,7 +38,7 @@ export default function Post({ postData }) {
       
       <div className="flex justify-end gap-4 mt-3 pt-3 border-t border-gray-100">
         <button className="cursor-pointer text-gray-500 hover:text-purple-600">
-          Curtir
+          <img src={ coracao } className="to-purple-600" ></img>
         </button>
         <button className="cursor-pointer text-gray-500 hover:text-purple-600">
           Comentar
