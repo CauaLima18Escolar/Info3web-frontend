@@ -22,7 +22,7 @@ export default function Posts() {
 
   const handlePeriodicPosts = async () => {
     const { data } = await get("/post/listar");
-    setPosts(data);
+    setPosts(data.reverse());
   };
 
   useEffect(() => {
