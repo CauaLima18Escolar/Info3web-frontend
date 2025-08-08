@@ -3,11 +3,9 @@ import AddPost from "../components/AddPost";
 
 export default function TimeLine() {
   return (
-    <div className="flex flex-col items-center py-10">
-      <div className="w-3xl">
-        <AddPost />
-        <Posts />
-      </div>
+    <div className="flex flex-col min-h-screen items-center justify-center py-10">
+      <AddPost/>
+      <Posts />    
     </div>
   );
 }
