@@ -139,7 +139,7 @@ export const Icons = {
       />
     </svg>
   ),
-  HeartFilled: ({width="24px", height="24px"}) => (
+  HeartFilled: ({ width = "24px", height = "24px" }) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       height={height}
@@ -148,6 +148,17 @@ export const Icons = {
       fill="#962ae8"
     >
       <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z" />
+    </svg>
+  ),
+  Logout: ({ width = "24px", height = "24px" }) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={height}
+      viewBox="0 -960 960 960"
+      width={width}
+      fill="#00000"
+    >
+      <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
     </svg>
   ),
 };
