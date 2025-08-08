@@ -6,13 +6,14 @@ import classIcon from "../assets/class-icon.svg";
 import profileIcon from "../assets/profile-icon.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/Auth";
+import { Icons } from "../assets/icons";
 
 
 const navItems = [
   { label: "Home", icon: homeIcon, to: "/" },
   { label: "Galeria", icon: galleryIcon, to: "/galeria" },
   { label: "Turma", icon: classIcon, to: "/turma" },
-  { label: "Perfil", icon: profileIcon, to: "/perfil" },
+  { label: "Perfil", icon: profileIcon, to: "/perfil" }
 ];
 
 
@@ -54,7 +55,7 @@ export default function Sidebar() {
           );
         })}
 
-        <button className="flex font-medium cursor-pointer items-center gap-4 w-full px-4 py-3 transition-colors hover:text-white hover:bg-red-400" onClick={logout}>Sair</button>
+        <button className="flex font-medium cursor-pointer items-center gap-4 w-full px-4 py-3 transition-colors hover:text-white hover:bg-red-400" onClick={logout}><Icons.Logout/> Sair</button>
       </nav>
     </aside>
   );
